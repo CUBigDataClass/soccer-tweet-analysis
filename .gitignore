@@ -1,0 +1,10 @@
+node_modules/
+venv/
+*.pyc
+webpack-stats-local.json
+*.sqlite3
+
+# Avoiding putting AWS credentials into git
+*.pem
+*.key
+*.crt

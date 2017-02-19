@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load render_bundle from webpack_loader %}
+
+{% block main %}
+<div id="maincontainer">
+</div>
+
+<div>
+    {{ some_var }}
+</div>
+
+{% render_bundle 'vendors' %}
+{% render_bundle 'Index' %}
+
+{% endblock %}
