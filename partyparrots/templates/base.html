@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="PartyParrots">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/static/js/app.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/IndexController.js"></script>
     </head>
-    <body>
+    <body ng-controller="IndexController as ctrl">
         {% block main %}
         {% endblock %}
     </body>
