@@ -1,5 +1,7 @@
 # Party Parrots
 
+[![Build Status](https://travis-ci.com/CUBigDataClass/Party-Parrots.svg?token=Q3z6q2gUKeig35zmUNn2&branch=master)](https://travis-ci.com/CUBigDataClass/Party-Parrots)
+
 ### Project Structure
 This project is built in two parts.
 * A Django app. This serves as the frontend for the main application

@@ -5,11 +5,14 @@ Django==1.10.1
 django-extensions==1.7.3
 django-webpack-loader==0.4.1
 enum34==1.1.6
+funcsigs==1.0.2
 ipython==5.2.2
 ipython-genutils==0.1.0
+mock==2.0.0
 oauthlib==2.0.1
 packaging==16.8
 pathlib2==2.2.1
+pbr==2.0.0
 pexpect==4.2.1
 pickleshare==0.7.4
 prompt-toolkit==1.0.13
@@ -24,4 +27,3 @@ six==1.10.0
 traitlets==4.3.1
 tweepy==3.5.0
 wcwidth==0.1.7
-wheel==0.24.0
