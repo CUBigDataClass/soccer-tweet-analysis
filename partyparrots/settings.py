@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
-    'partyparrots.lib.twitter'
+    'django_extensions',
+    'partyparrots.lib.twitter',
+    'partyparrots.lib.gnip',
 ]
 
 MIDDLEWARE = [
