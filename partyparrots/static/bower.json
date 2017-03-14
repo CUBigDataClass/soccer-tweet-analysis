@@ -1,0 +1,24 @@
+{
+  "name": "partyparrots",
+  "homepage": "https://github.com/CUBigDataClass/Party-Parrots",
+  "authors": [
+    "Saurabh Sood <saurabhsood91@gmail.com>"
+  ],
+  "description": "partyparrots frontend components",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.2",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "angular-bootstrap": "^2.5.0"
+  }
+}

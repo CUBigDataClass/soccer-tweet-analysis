@@ -1,4 +1,5 @@
 node_modules/
+bower_components/
 venv/
 *.pyc
 webpack-stats-local.json
