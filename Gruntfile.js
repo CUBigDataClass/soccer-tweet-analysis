@@ -5,7 +5,13 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     bower_concat: {
       all: { 
-        dest: 'partyparrots/static/js/bower.js'
+        dest: {
+	  js: 'partyparrots/static/js/bower.js',
+          css: 'partyparrots/static/css/bower.css'
+        },
+     	mainFiles: {
+	  'bootstrap': 'dist/css/bootstrap.css'
+      	}
       }
     },
     

@@ -3,13 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-        <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
-        <script type="text/javascript" src="/static/js/app.js"></script>
-        <script type="text/javascript" src="/static/js/controllers/IndexController.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/bower.css">
+        <title>The Beautiful Game</title>
     </head>
     <body ng-controller="IndexController as ctrl">
         {% block main %}
         {% endblock %}
+        <script type="text/javascript" src="/static/js/bower.min.js"></script>
+        <script type="text/javascript" src="/static/js/app.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/IndexController.js"></script>
     </body>
 </html>
