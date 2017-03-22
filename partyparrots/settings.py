@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'partyparrots.lib.twitter',
     'partyparrots.lib.gnip',
+    'partyparrots.api'
 ]
 
 MIDDLEWARE = [
