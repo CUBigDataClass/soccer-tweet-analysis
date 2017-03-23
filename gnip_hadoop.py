@@ -34,20 +34,21 @@ if __name__ == '__main__':
             next_param=next_param
         )
 
-    	current_time = time.strftime('%Y-%m-%d') + '_' + time.strftime('%H-%M-%S')
+        current_time = time.strftime('%Y-%m-%d') + '_' + time.strftime('%H-%M-%S')
+        file_dir = os.path.join(base_dir, args.hashtag)
 
-		file_dir = os.path.join(base_dir, args.hashtag)
-		file_name = os.path.join(file_dir, args.hashtag + '_' + current_time + '.txt')
+        file_name = os.path.join(file_dir, args.hashtag + '_' + current_time + '.txt')
 
-		if not os.path.exists(file_dir):
-   			os.makedirs(file_dir)
+        if not os.path.exists(file_dir):
+            os.makedirs(file_dir)
 
-    	if tweets['results']:
-    		with open(file_name, 'wb') as f:
-        		f.write(json.dumps(tweets))
 
-	    	to_path = 'hdfs://localhost:9000/{hashtag}/{filename}'.format(hashtag=args.hashtag, filename=file_name)	    
-			hdfs.put(file_name, to_path)
+        if tweets['results']:
+            with open(file_name, 'wb') as f:
+                f.write(json.dumps(tweets))
+
+            to_path = 'hdfs://localhost:9000/{hashtag}/{filename}'.format(hashtag=args.hashtag, filename=file_name)	    
+            hdfs.put(file_name, to_path)
 
         next_param = tweets['next']
         
