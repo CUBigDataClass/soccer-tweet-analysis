@@ -2,7 +2,8 @@ import argparse
 import json
 import os
 import sys
-from hdfs import InsecureClient
+import time
+# from hdfs import InsecureClient
 
 from partyparrots.lib.gnip.gnip import Gnip
 
@@ -18,11 +19,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print args.hashtag
 
-    client = InsecureClient('http://ec2-52-14-79-120.us-east-2.compute.amazonaws.com:50070', user='ubuntu')
+    # client = InsecureClient('http://ec2-52-14-79-120.us-east-2.compute.amazonaws.com:50070', user='ubuntu')
 
     gnip = Gnip()
 
-    next_param = None
+    next_param = None    
 
     while True:
         tweets = gnip.get_tweets_for_hashtag(
@@ -30,10 +31,11 @@ if __name__ == '__main__':
             next_param=next_param
         )
 
+        current_time = time.strftime('%Y-%m-%d') + '_' + time.strftime('%H-%M-%S')
+
         if tweets['results']:
-            for tweet in tweets['results']:
-                with client.write('afc.json', append=True) as writer:
-                    writer.write(json.dumps(tweet))
+            with open(args.hashtag + '_' + current_time + '.txt', 'wb') as f:
+                f.write(json.dumps(tweets))
 
         next_param = tweets['next']
         
