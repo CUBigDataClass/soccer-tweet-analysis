@@ -25,7 +25,7 @@ class Gnip:
             'fromDate': from_date,
             'to_date': to_date,
             'next': next_param,
-            'maxResults': 10
+            'maxResults': 500
         }
 
         r = requests.get(
