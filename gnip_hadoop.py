@@ -42,19 +42,18 @@ if __name__ == '__main__':
 		file_dir = os.path.join(base_dir, args.hashtag) + '/'
 		temp_file = tempfile.mkstemp(prefix=file_dir, suffix='.txt')
 
-	hdfs_client.create_directory('{}'.format(args.hashtag))
-	current_dir = hdfs_client.working_directory()
+		hdfs_client.create_directory('{}'.format(args.hashtag))
+		current_dir = hdfs_client.working_directory()
 
 		if not os.path.exists(file_dir):
 			os.makedirs(file_dir)
-
 
 		if tweets['results']:
 			with open(temp_file[1], 'wb') as f:
 				f.write(json.dumps(tweets))
 
-		hdfs_path = current_dir + '/{hashtag}/{filename}'.format(hashtag=args.hashtag, filename=os.path.basename(temp_file[1]))
-		hdfs.put(temp_file[1], hdfs_path)
+			hdfs_path = current_dir + '/{hashtag}/{filename}'.format(hashtag=args.hashtag, filename=os.path.basename(temp_file[1]))
+			hdfs.put(temp_file[1], hdfs_path)
 
 		next_param = tweets['next']
 		
