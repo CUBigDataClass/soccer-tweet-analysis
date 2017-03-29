@@ -23,7 +23,7 @@ if __name__ == '__main__':
 	config.read('hdfs_config.ini')
 
 	host = config.get('main', 'host')
-	port = config.get('main', 'port')
+	port = int(config.get('main', 'port'))
 
 	base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +40,10 @@ if __name__ == '__main__':
 		)
 
 		file_dir = os.path.join(base_dir, args.hashtag) + '/'
+		
+		if not os.path.exists(file_dir):
+			os.makedirs(file_dir)
+
 		temp_file = tempfile.mkstemp(prefix=file_dir, suffix='.txt')
 
 		hdfs_client.create_directory('{}'.format(args.hashtag))
