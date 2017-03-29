@@ -31,12 +31,13 @@ if __name__ == '__main__':
 
 	gnip = Gnip()
 
-	next_param = None    
+	next_param = None
 
 	while True:
 		tweets = gnip.get_tweets_for_hashtag(
 			hashtag=args.hashtag,
-			next_param=next_param
+			next_param=next_param,
+			from_date=1420070400
 		)
 
 		file_dir = os.path.join(base_dir, args.hashtag) + '/'
@@ -56,4 +57,3 @@ if __name__ == '__main__':
 			hdfs.put(temp_file[1], hdfs_path)
 
 		next_param = tweets['next']
-		
