@@ -37,7 +37,7 @@ if __name__ == '__main__':
 		tweets = gnip.get_tweets_for_hashtag(
 			hashtag=args.hashtag,
 			next_param=next_param,
-			from_date='201501010000'
+			from_date=201501010000
 		)
 
 		file_dir = os.path.join(base_dir, args.hashtag) + '/'
