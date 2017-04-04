@@ -53,7 +53,7 @@ if __name__ == '__main__':
 		if not os.path.exists(file_dir):
 			os.makedirs(file_dir)
 
-		if tweets['results']:
+		if tweets.get('results', None):
 			with open(temp_file[1], 'wb') as f:
 				f.write(json.dumps(tweets))
 
