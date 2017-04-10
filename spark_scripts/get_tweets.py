@@ -12,7 +12,7 @@ config.read('../hdfs_config.ini')
 host = config.get('main', 'host')
 port = config.get('main', 'port')
 dir_path = '/user/saurabh/#Atleti/*.txt'
-file_path = host + port + dir _path
+file_path = host + port + dir_path
 
 # Set the Spark context
 conf = SparkConf().setMaster("local[*]").setAppName('pyspark')
