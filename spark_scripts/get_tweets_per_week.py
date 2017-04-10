@@ -1,4 +1,5 @@
 from tweet_dataframe import filtered_tweets
+from pyspark.sql.functions import year, month, weekofyear
 
 
 tweets_y = filtered_tweets.withColumn('year', year('date')).orderBy('year')
