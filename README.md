@@ -11,6 +11,7 @@
 
 ### Building the project
 * Install the python requirements. `pip install -r requirements.txt`
+* Run `python setup.py develop`
 * Install the frontend requirements. `npm install`
 * Install the frontend components. `bower install`
 * Build the frontend components. `node_modules/grunt/bin/grunt build_bower`
