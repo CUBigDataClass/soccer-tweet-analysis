@@ -82,13 +82,13 @@ WSGI_APPLICATION = 'partyparrots.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_cassandra_engine',
-        'NAME': 'db',
-        'TEST_NAME': 'test_db',
+        'NAME': 'partyparrots',
+        'TEST_NAME': 'test_partyparrots',
         'HOST': 'localhost',
         'OPTIONS': {
             'replication': {
                 'strategy_class': 'SimpleStrategy',
-                'replication_factor': 1
+                'replication_factor': 3
             }
         }
     }
