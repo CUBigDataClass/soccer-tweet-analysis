@@ -3,10 +3,22 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="/static/css/bower.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/bower.css" />
+        <link href="https://fonts.googleapis.com/css?family=Spirax" rel="stylesheet" />
+        <link href="/static/css/index.css" rel="stylesheet" />
         <title>The Beautiful Game</title>
     </head>
     <body ng-controller="IndexController as ctrl">
+
+        <!-- Navbar -->
+        <div class="navbar navbar-default partyparrots-navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand" id="brand">The Beautiful Game</a>
+                </div>
+            </div>
+        </div>
+
         {% block main %}
         {% endblock %}
         <script type="text/javascript" src="/static/js/bower.min.js"></script>
