@@ -7,3 +7,16 @@
 .partyparrots-navbar {
     background-color: black;
 }
+
+.features-pane {
+    border-right: 1px solid gray;
+    height: 100vh;
+}
+
+.feature {
+    cursor: pointer;
+}
+
+.feature:hover {
+    background-color: #3E7293;
+}
