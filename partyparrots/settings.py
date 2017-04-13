@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'partyparrots.lib.gnip',
     'partyparrots.cassandra',
     'django_cassandra_engine',
+    'partyparrots.api',
 ]
 
 MIDDLEWARE = [

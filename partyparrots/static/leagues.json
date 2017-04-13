@@ -1,0 +1,106 @@
+{
+  "leagues": [
+    {
+      "name": "English Premier League",
+      "logo": "static/img/epl.png",
+      "clubs": [
+        {
+          "name": "Arsenal FC",
+          "logo": "static/img/af.png"
+	},
+        {
+	  "name": "Chelsea FC",
+          "logo": "static/img/cf.png"
+        },
+        {
+	  "name": "Liverpool FC",
+          "logo": "static/img/lf.png"
+        },
+        {
+	  "name": "Manchester City FC",
+          "logo": "static/img/mcf.png"
+        },
+        {
+          "name": "Manchester United FC",
+          "logo": "static/img/muf.png"
+        },
+        {
+          "name": "Tottenham Hotspur FC",
+          "logo": "static/img/thf.png"
+        }
+      ]
+    },
+    {
+      "name": "German Bundesliga",
+      "logo": "static/img/gb.png",
+      "clubs": [
+        {
+          "name": "Borussia Dortmund",
+          "logo": "static/img/bd.png"
+        },
+        {
+          "name": "FC Bayern Munchen",
+          "logo": "static/img/fbm.png"
+        }
+      ]
+    },
+    {
+      "name": "Spanish La Liga",
+      "logo": "static/img/sll.png",
+      "clubs": [
+        {
+          "name": "Atletico de Madrid",
+          "logo": "static/img/adm.png"
+        },
+        {
+          "name": "FC Barcelona",
+          "logo": "static/img/fb.png"
+        },
+        {
+          "name": "Real Madrid",
+          "logo": "static/img/rm.png"
+        },
+        {
+          "name": "Sevilla FC",
+          "logo": "static/img/sf.png"
+        }
+      ]
+    },
+    {
+      "name": "French Ligue 1",
+      "logo": "static/img/fl1.png",
+      "clubs": [
+        {
+          "name": "Paris Saint-Germain FC",
+          "logo": "static/img/psgf.png"
+        },
+        {
+          "name": "Olympique Lyonnais",
+          "logo": "static/img/pl.png"
+        }
+      ]
+    },
+    {
+      "name": "Italian Serie A",
+      "logo": "static/img/isa.png",
+      "clubs": [
+	{
+          "name": "AC Milan",
+          "logo": "static/img/am.png"
+        },
+        {
+          "name": "AS Roma",
+          "logo": "static/img/ar.png"
+        },
+        {
+          "name": "FC Internazionale Milano",
+          "logo": "static/img/fim.png"
+        },
+        {
+          "name": "Juventus FC",
+          "logo": "static/img/jf.png"
+        } 
+      ]
+    }
+  ]
+}

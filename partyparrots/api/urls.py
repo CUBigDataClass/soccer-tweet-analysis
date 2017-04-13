@@ -1,4 +1,4 @@
-"""partyparrots URL Configuration
+"""partyparrots/api URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -13,14 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
-from django.contrib import admin
-from django.views import generic
-from views import *
+from django.conf.urls import url
+from views import get_leagues
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^view2/', generic.TemplateView.as_view(template_name='view2.html')),
-    url(r'^$', index_view),
-    url(r'api/', include('partyparrots.api.urls'))
+    url(r'leagues/', get_leagues)
 ]
