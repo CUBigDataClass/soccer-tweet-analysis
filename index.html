@@ -1,0 +1,129 @@
+<html>
+
+<head>
+    <title>Project 1: Zayo Opportunities</title>
+
+    <!--Include CSS-->
+    <link href="interaction.css" rel="stylesheet">
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Theme CSS -->
+    <!-- Theme From: https://startbootstrap.com/template-overviews/freelancer/ -->
+    <link href="freelancer.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+    <!-- reference to Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="leaflet.awesome-markers.css">
+
+    <!--Include JavaScript Files-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+    <script src="uStates.js"></script>
+    <!-- creates uStates. -->
+    <script src="https://use.fontawesome.com/f78ead1096.js"></script>
+    <!-- reference to Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="leaflet.awesome-markers.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/treemap.js"></script>
+
+    <link rel="stylesheet" href="MarkerCluster.css" />
+    <link rel="stylesheet" href="MarkerCluster.Default.css" />
+    <script src="leaflet.markercluster-src.js"></script>
+    <style>
+        body { padding-top: 100px; }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class='container'>
+
+        <div id="partThree" class="row ">
+            <h2 style="text-align: center;">TreeMap of leagues</h2>
+            <div id="treeMap" style="margin: auto"></div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        // Tree Map Code using highcharts
+        d3.json("test.json", function(data) {
+            var points = [];
+            var clubsP;
+            var leagueVal;
+            var leagueI = 0;
+            var clubP;
+            var clubI = 0;
+            var league;
+            var club;
+
+            for (league in data) {
+                if (data.hasOwnProperty(league)) {
+                    leagueVal = 0;
+                    leagueP = {
+                        id: 'id_' + leagueI,
+                        name: league,
+                        color: Highcharts.getOptions().colors[leagueI]
+                    };
+                    clubI = 0;
+                    for (club in data[league]) {
+                        if (data[league].hasOwnProperty(club)) {
+                            clubP = {
+                                id: leagueP.id + '_' + clubI,
+                                name: club,
+                                parent: leagueP.id,
+                                value: Math.round(+data[league][club]),
+                                color: Highcharts.getOptions().colors[leagueI]
+
+                            };
+                            leagueVal += clubP.value;
+                            points.push(clubP);
+                            clubI = clubI + 1;
+                        }
+                    }
+                    leagueP.value = Math.round(leagueVal);
+                    points.push(leagueP);
+                    leagueI = leagueI + 1;
+                }
+            }
+            Highcharts.chart('treeMap', {
+                series: [{
+                    type: 'treemap',
+                    layoutAlgorithm: 'squarified',
+                    allowDrillToNode: true,
+                    animationLimit: 1000,
+                    dataLabels: {
+                        enabled: false
+                    },
+                    levelIsConstant: false,
+                    levels: [{
+                        level: 1,
+                        dataLabels: {
+                            enabled: true
+                        },
+                        borderWidth: 3
+                    }],
+                    data: points
+                }],
+                subtitle: {
+                    text: 'Click points to drill down'
+                },
+                title: {
+                    text: 'Tweet Count across leagues and clubs since 2016'
+                }
+            });
+        });
+    </script>
+
+</body>
