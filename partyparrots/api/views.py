@@ -3,7 +3,7 @@ from django.http import HttpResponse,JsonResponse
 from django.db import connection
 import json
 from collections import defaultdict
-from pykafka import KafkaClient
+# from pykafka import KafkaClient
 
 from partyparrots.api.methods import get_leagues
 from partyparrots.settings import FIXTURES_DIR
@@ -12,13 +12,13 @@ from elasticsearch import Elasticsearch
 import redis
 import os
 
-KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
-
-TOPIC = KAFKA_CLIENT.topics['realtime']
-
-KAFKA_CONSUMER = TOPIC.get_simple_consumer(
-   consumer_group='partyparrots'
-)
+# KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
+#
+# TOPIC = KAFKA_CLIENT.topics['realtime']
+#
+# KAFKA_CONSUMER = TOPIC.get_simple_consumer(
+#    consumer_group='partyparrots'
+# )
 
 def get_league_data(request):
     if request.method == 'GET':
@@ -48,6 +48,15 @@ def get_league_counts(request):
 def get_geotagged_tweets(request):
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     results = {'data': r.get('geotweets_text_'+'Liverpool')}
+    return JsonResponse(results)
+
+def get_daily_tweet_count(request):
+    r = redis.StrictRedis(host='localhost', port='6379', db=0)
+
+    club = request.GET.get('club')
+    print club
+
+    results = {'data': r.get('daily_tweet_counts_'+ club)}
     return JsonResponse(results)
 
 def get_search_tweets(request):
