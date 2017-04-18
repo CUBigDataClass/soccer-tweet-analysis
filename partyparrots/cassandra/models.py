@@ -11,9 +11,9 @@ class DailyTweetCounts(DjangoCassandraModel):
     date=columns.DateTime(required=True)
     count=columns.Integer(index=True)
 
-class WeeklyTweetCounts(DjangoCassandraModel):
+class GeoTweets(DjangoCassandraModel):
     """
-    Represents the weekly tweet count of all the clubs
+    Represents the geographic location of each tweet for all the clubs
     """
     id=columns.UUID(primary_key=True, default=uuid.uuid4)
     club=columns.Text(required=True)
