@@ -7,7 +7,7 @@ class DailyTweetCounts(DjangoCassandraModel):
     Represents the daily tweet count of all the clubs
     """
     id=columns.UUID(primary_key=True, default=uuid.uuid4)
-    club=columns.Text(required=True)
+    club=columns.Text(required=True, index=True)
     date=columns.DateTime(required=True)
     count=columns.Integer(index=True)
 
