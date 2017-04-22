@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.views import generic
 from views import index_view
@@ -21,5 +21,6 @@ from views import index_view
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^view2/', generic.TemplateView.as_view(template_name='view2.html')),
-    url(r'^$', index_view)
+    url(r'^$', index_view),
+    url(r'^api/', include('partyparrots.api.urls')),
 ]

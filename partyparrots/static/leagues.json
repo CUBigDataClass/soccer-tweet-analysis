@@ -1,0 +1,30 @@
+{
+    "English Premier League": {
+        "Arsenal": 0,
+        "Chelsea": 0,
+        "Liverpool": 0,
+        "Manchester City": 0,
+        "Manchester United": 21,
+        "Tottenham Hotspur": 0
+    },
+    "La Liga": {
+        "Atletico Madrid": 0,
+        "FC Barcelona": 0,
+        "Real Madrid": 0,
+        "Sevilla": 0
+    },
+    "Bundesliga": {
+        "Borussia Dortmund": 0,
+        "Bayern Munich": 0
+    },
+    "Serie A": {
+        "AC Milan": 0,
+        "Internazionale": 0,
+        "Juventus": 0,
+        "AS Roma": 0
+    },
+    "Ligue 1": {
+        "PSG": 0,
+        "Olympique Lyon": 0
+    }
+}

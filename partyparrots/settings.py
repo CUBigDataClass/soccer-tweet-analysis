@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django_cassandra_engine',
         'NAME': 'partyparrots',
         'TEST_NAME': 'test_partyparrots',
-        'HOST': 'localhost',
+        'HOST': 'ec2-52-14-248-235.us-east-2.compute.amazonaws.com',
         'OPTIONS': {
             'replication': {
                 'strategy_class': 'SimpleStrategy',
