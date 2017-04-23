@@ -1,0 +1,23 @@
+from cassandra.cluster import Cluster
+import redis
+
+def get_geotweets():
+    cluster = Cluster(['172.31.4.5'])
+    session = cluster.connect('partyparrots')
+    query = session.execute('select club, geo, text from geo_tweets')
+    results = {}
+    for item in query:
+        club = item.club
+        if club not in results:
+            results[club] = []
+        results[club].append([item.geo[0], item.geo[1], item.text])
+    return results
+
+def connect_to_redis():
+    r = redis.StrictRedis(host='localhost', port='6379', db=0)
+    geotweets = get_geotweets()
+    for key in geotweets:
+        r.set(key+'_geotweets', geotweets[key])
+
+connect_to_redis()
+
