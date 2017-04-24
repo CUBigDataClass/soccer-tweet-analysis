@@ -56,4 +56,4 @@ def get_league_data(request):
 def get_geotagged_tweets(request):
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     results = {'data': r.get('geotweets')}
-    return JsonResponse(result) 
+    return JsonResponse(results) 
