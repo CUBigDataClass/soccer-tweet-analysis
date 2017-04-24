@@ -16,8 +16,7 @@ def get_geotweets():
 def connect_to_redis():
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     geotweets = get_geotweets()
-    for key in geotweets:
-        r.set(key+'_geotweets', geotweets[key])
+    r.set('geotweets', geotweets)
 
 connect_to_redis()
 
