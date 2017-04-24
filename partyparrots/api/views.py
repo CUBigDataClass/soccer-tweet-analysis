@@ -5,7 +5,9 @@ import json
 from collections import defaultdict
 
 from partyparrots.api.methods import get_leagues
-from partyparrots.cassandra.models import DailyTweetCounts
+from partyparrots.cassandra.models import DailyTweetCounts, GeoTweets
+
+import redis
 
 # def get_league_data(request):
 #     leagues_json = get_leagues()
@@ -50,3 +52,8 @@ def get_league_data(request):
         return JsonResponse(results_dict)
     else:
         request.set_status(405)
+
+def get_geotagged_tweets(request):
+    r = redis.StrictRedis(host='localhost', port='6379', db=0)
+    results = {'data': r.get('geotweets')}
+    return JsonResponse(result) 

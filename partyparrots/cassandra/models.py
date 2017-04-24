@@ -28,3 +28,12 @@ class MonthlyTweetCounts(DjangoCassandraModel):
     month_no=columns.Integer(required=True)
     club=columns.Text(required=True)
     count=columns.Integer(required=True)
+
+class GeoTweets(DjangoCassandraModel):
+    """
+    Represents the tweets filtered by based on whether they have geotags
+    """
+    id=columns.UUID(primary_key=True, default=uuid.uuid4)
+    club=columns.Text(required=True, index=True)
+    geo=columns.List(value_type=columns.Float(), required=True),
+    text=columns.Text()
