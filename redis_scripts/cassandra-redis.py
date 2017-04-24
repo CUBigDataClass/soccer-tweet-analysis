@@ -2,6 +2,9 @@ from cassandra.cluster import Cluster
 import redis
 
 def get_geotweets():
+    """
+    Fetch geotagged tweets from cassandra cluster
+    """
     cluster = Cluster(['172.31.4.5'])
     session = cluster.connect('partyparrots')
     query = session.execute('select club, geo, text from geo_tweets')
@@ -14,6 +17,9 @@ def get_geotweets():
     return results
 
 def connect_to_redis():
+    """
+    Write tweets to redis
+    """
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     geotweets = get_geotweets()
     r.set('geotweets', geotweets)
