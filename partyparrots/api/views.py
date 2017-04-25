@@ -3,12 +3,20 @@ from django.http import HttpResponse,JsonResponse
 from django.db import connection
 import json
 from collections import defaultdict
+from pykafka import KafkaClient
 
 from partyparrots.api.methods import get_leagues
 from partyparrots.cassandra.models import DailyTweetCounts, GeoTweets
-from partyparrots.settings import KAFKA_CONSUMER
 
 import redis
+
+KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
+
+TOPIC = KAFKA_CLIENT.topics['realtime']
+
+KAFKA_CONSUMER = TOPIC.get_simple_consumer(
+    consumer_group='partyparrots'
+)
 
 # def get_league_data(request):
 #     leagues_json = get_leagues()
