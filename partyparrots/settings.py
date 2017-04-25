@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from pykafka import KafkaClient
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +27,14 @@ SECRET_KEY = 'f=t_-2#gdjv(h_c!+t4xox59!^m-ixhd0*hrp#z49ljyc7l9a!'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+client = KafkaClient(hosts="127.0.0.1:9092")
+
+topic = client.topics['realtime']
+
+KAFKA_CONSUMER = topic.get_simple_consumer(
+    consumer_group='partyparrots'
+)
 
 
 # Application definition

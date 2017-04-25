@@ -6,6 +6,7 @@ from collections import defaultdict
 
 from partyparrots.api.methods import get_leagues
 from partyparrots.cassandra.models import DailyTweetCounts, GeoTweets
+from partyparrots.settings import KAFKA_CONSUMER
 
 import redis
 
@@ -55,5 +56,15 @@ def get_league_data(request):
 
 def get_geotagged_tweets(request):
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
-    results = {'data': r.get('geotweets_text_'+'Liverpool')}
-    return JsonResponse(results) 
+    results = {'data': r.get('geotweets')}
+    return JsonResponse(results)
+
+
+def get_realtime_tweet(request):
+    tweet = KAFKA_CONSUMER.consume()
+    KAFKA_CONSUMER.commit_offsets()
+
+    response = {
+        'tweet': tweet.value
+    }
+    return JsonResponse(response)

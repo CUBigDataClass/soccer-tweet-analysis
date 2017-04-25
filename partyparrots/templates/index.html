@@ -13,4 +13,12 @@
     <div id="geo-map"></div>
 </div>
 
+<div ng-controller="TickerController as ctrl">
+    <ul ticker>
+      <li ng-repeat="item in ctrl.tickerItems" class="item-{[{$index}]}">
+        {[{ item.tweet }]}
+      </li>
+    </ul>
+</div>
+
 {% endblock %}
