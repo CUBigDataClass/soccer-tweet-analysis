@@ -8,4 +8,13 @@ angular.module('PartyParrots')
             });
         }
     }
+}])
+.factory('GeotweetsService',['$http', function($http){
+   return {
+       getGeotweets: function() {
+           return $http.get('api/geotweets').then(function(data) { 
+               return data.data;
+	   });
+       }
+   }
 }]);
