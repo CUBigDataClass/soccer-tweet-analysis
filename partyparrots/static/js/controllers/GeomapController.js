@@ -1,40 +1,32 @@
-angular.module('PartyParrots')
-.controller('GeomapController', [function() {
+angular.module('PartyParrots').controller('GeomapController', ['GeotweetsService', function(GeotweetsService) {
     var self = this;
-
-    this.clubIcon = function(club) {
-         var icon = L.icon({
-	     iconUrl: '../static/img/' + club + '.png', 
-             iconSize: [40, 40],
-             iconAnchor: [10, 10],
-	 });
-         return icon;
-    };
+    var geoPoints = GeotweetsService.getGeotweets();
 
     this.geoMap = function() {
-                var lfcLogo = this.clubIcon('lfc');
-             
-                var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
-                        }),
-                latlng = L.latLng(-37.82, 175.24);
-
-                var map = L.map('geo-map', {center: latlng, zoom: 13, layers: [tiles]});
-
-                var markers = L.markerClusterGroup();
- 
-                for (var i = 0; i < addressPoints.length; i++) {
-                        var a = addressPoints[i];
-                        var title = a[2];
-                        var marker = L.marker(new L.LatLng(a[0], a[1]), {icon: lfcLogo, title: title });
-                        marker.number = a[2];
-                        marker.bindPopup(title);
-                        markers.addLayer(marker);
-                }
-
-                map.addLayer(markers);
+        geoPoints.then(function(geoPoints){
+            var points = geoPoints["data"].replace(/'/g,'"');
+            var points = JSON.parse(points);
+            var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                maxZoom:18,
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
+            }),
+            latlng = L.latLng(0, 0);
+    
+            var map = L.map('geo-map', {center: latlng, zoom: 2, layers: [tiles]});
+    
+            var markers = L.markerClusterGroup({chunkedLoading:true});
+    
+            for (var i = 0; i < points.length; i++) {
+                    var a = points[i]; 
+                    var title = a['text'];
+                    var marker = L.marker(new L.LatLng(a['lat'], a['lon']), {title: title});
+                    marker.bindPopup(title);
+                    markers.addLayer(marker);
+            }
+    
+            map.addLayer(markers);
+        });   
     };
-
+    
     this.geoMap();
-
 }]);
