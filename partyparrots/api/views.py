@@ -53,6 +53,14 @@ def get_league_data(request):
     else:
         request.set_status(405)
 
+def get_league_counts(request):
+    if request.method == 'GET':
+        r = redis.StrictRedis(host='localhost', port='6379', db=0)
+        results = r.get('league_counts').replace('\'', '"')
+        return JsonResponse(json.loads(results))
+    else:
+        request.set_status(405)
+
 def get_geotagged_tweets(request):
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     results = {'data': r.get('geotweets_text_'+'Liverpool')}

@@ -31,3 +31,9 @@
     background-color: #76A6FC;
     border-radius: 4px;
 }
+
+#treemap-container {
+    border: 1px solid #ccc;
+    width: 60%;
+    margin: auto;
+}
