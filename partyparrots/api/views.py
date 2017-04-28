@@ -6,32 +6,10 @@ from collections import defaultdict
 
 from partyparrots.api.methods import get_leagues
 from partyparrots.cassandra.models import DailyTweetCounts, GeoTweets
+from elasticsearch import Elasticsearch
 
 import redis
 
-# def get_league_data(request):
-#     leagues_json = get_leagues()
-
-#     results_dict = defaultdict(dict)
-
-#     for league in leagues_json:
-#         league_count = 0
-#         club_counts = {}
-#         for club in leagues_json[league]:
-#             # get counts for club
-#             query_results = DailyTweetCounts.objects.filter(
-#                 club=club
-#             )
-#             league_count += query_results.count()
-#             club_count = 0
-
-#             for item in query_results:
-#                 club_count += item.count
-#             club_counts[club] = club_count
-
-#         results_dict[league] = club_counts
-
-#     return JsonResponse(results_dict)
 
 def get_league_data(request):
     if request.method == 'GET':
@@ -39,10 +17,7 @@ def get_league_data(request):
         leagues_json = get_leagues()
         results_dict = defaultdict(dict)
 
-        # import pudb
-
         for league in leagues_json:
-            # pudb.set_trace()
             league_count = 0
             for club in leagues_json[league]:
                 result = cursor.execute("select sum(count) as sum from daily_tweet_counts where club='{}'".format(club))
@@ -57,3 +32,13 @@ def get_geotagged_tweets(request):
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     results = {'data': r.get('geotweets_text_'+'Liverpool')}
     return JsonResponse(results) 
+
+def get_search_tweets(request):
+    es = Elasticsearch([{'host':'localhost', 'port':9200}])
+    es.indices.put_settings(index="geo_tweets", body= {"index" : { "max_result_window" : 70000 }})
+
+    query = request.GET.get("q")
+    result = es.search(q=query,size=70000)
+    return JsonResponse{
+        "results": result['hits']['hits']
+    }
