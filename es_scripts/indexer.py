@@ -7,11 +7,9 @@ from elasticsearch import Elasticsearch
 def get_geotagged_tweets(clubs):
     tweets = list()
     for club in clubs:
-        print club
         r = redis.StrictRedis(host='localhost', port='6379', db=0)
         results = {'data': r.get('geotweets_text_'+club)}
         if results['data']:
-            print results
             tweets.append(ast.literal_eval(results['data']))
     return tweets
 
@@ -24,7 +22,6 @@ def get_leagues():
         for league in f:
             for club in f[league]:
                 clubs.append(club)
-    print clubs
     return get_geotagged_tweets(clubs)
 
 def index_tweets():
