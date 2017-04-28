@@ -33,7 +33,10 @@
 }
 
 #treemap-container {
-    border: 1px solid #ccc;
     width: 60%;
     margin: auto;
+}
+
+#chart-div {
+    border: 1px solid #ccc;
 }

@@ -25,18 +25,18 @@ angular.module('PartyParrots').controller('TreemapController', ['TreemapService'
         highlightOnMouseOver: true,
         maxDepth: 1,
         maxPostDepth: 2,
-        minHighlightColor: 'feeb65',
-        midHighlightColor: '#e4521b',
-        maxHighlightColor: '#4d342f',
-        minColor: '#ffeda0',
-        midColor: '#feb24c',
-        maxColor: '#f03b20',
+        minColor: '#cceaea',
+        midColor: '#99d6d6',
+        maxColor: '#66c1c1',
+        minHighlightColor: '#e8f0f0',
+        midHighlightColor: '#cbdede',
+        maxHighlightColor: '#b5d0d0',
         headerHeight: 15,
         showScale: true,
         height: 500,
-        fontSize: 14, 
+        fontSize: 16, 
         fontFamily: 'Roboto Condensed', 
-        textStyle: {bold:true, auraColor: '#fff'},
+        textStyle: {bold:true},
         useWeightedAverageForAggregation: true,
         generateTooltip: showStaticTooltip
       };
@@ -44,7 +44,7 @@ angular.module('PartyParrots').controller('TreemapController', ['TreemapService'
         tree.draw(mapData, options);
 
         function showStaticTooltip(row, size, value) {
-           return '<div style="background:#fff; padding:10px; border:solid 1px #ccc">' + size + ' tweets</div>';
+           return '<div style="background:#fff; padding:10px; border:solid 1px #ccc; font-family: Roboto Condensed">' + size + ' tweets</div>';
         }
         });
     };

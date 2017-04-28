@@ -5,7 +5,7 @@ import json
 from collections import defaultdict
 
 from partyparrots.api.methods import get_leagues
-from partyparrots.cassandra.models import DailyTweetCounts, GeoTweets
+from elasticsearch import Elasticsearch
 
 import redis
 
@@ -65,3 +65,14 @@ def get_geotagged_tweets(request):
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     results = {'data': r.get('geotweets_text_'+'Liverpool')}
     return JsonResponse(results) 
+
+def get_search_tweets(request):
+    es = Elasticsearch([{'host':'localhost', 'port':9200}])
+    es.indices.put_settings(index="geo_tweets", body= {"index" : { "max_result_window" : 70000 }})
+
+    query = request.GET.get("q")
+    print query
+    result = es.search(q=query,size=70000)
+    return JsonResponse({
+        "results": result['hits']['hits']
+    })
