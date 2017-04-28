@@ -2,6 +2,6 @@ from django.conf.urls import url
 from views import *
 
 urlpatterns = [
-    url(r'league/', get_league_data),
+    url(r'league/', get_league_counts),
     url(r'geotweets/', get_geotagged_tweets),
 ]

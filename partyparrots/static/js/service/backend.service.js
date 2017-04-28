@@ -17,4 +17,13 @@ angular.module('PartyParrots')
 	   });
        }
    }
+}])
+.factory('TreemapService', ['$http', function($http){
+   return {
+       getLeagueCounts: function() {
+           return $http.get('api/league').then(function(data) {
+               return data.data;
+           });
+       }
+   }
 }]);

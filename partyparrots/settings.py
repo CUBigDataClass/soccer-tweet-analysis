@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'partyparrots.lib.twitter',
     'partyparrots.lib.gnip',
     'partyparrots.cassandra',
-    'django_cassandra_engine',
+    'django_cassandra_engine'
 ]
 
 MIDDLEWARE = [
@@ -79,20 +79,6 @@ WSGI_APPLICATION = 'partyparrots.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django_cassandra_engine',
-        'NAME': 'partyparrots',
-        'TEST_NAME': 'test_partyparrots',
-        'HOST': 'ec2-52-14-248-235.us-east-2.compute.amazonaws.com',
-        'OPTIONS': {
-            'replication': {
-                'strategy_class': 'SimpleStrategy',
-                'replication_factor': 3
-            }
-        }
-    }
-}
 
 
 # Password validation
