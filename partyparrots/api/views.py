@@ -12,13 +12,13 @@ from elasticsearch import Elasticsearch
 import redis
 import os
 
-#KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
+KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
 
-#TOPIC = KAFKA_CLIENT.topics['realtime']
+TOPIC = KAFKA_CLIENT.topics['realtime']
 
-#KAFKA_CONSUMER = TOPIC.get_simple_consumer(
-#    consumer_group='partyparrots'
-#)
+KAFKA_CONSUMER = TOPIC.get_simple_consumer(
+   consumer_group='partyparrots'
+)
 
 def get_league_data(request):
     if request.method == 'GET':
