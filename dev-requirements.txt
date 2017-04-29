@@ -74,4 +74,3 @@ webencodings==0.5
 wheel==0.24.0
 widgetsnbextension==2.0.0
 elasticsearch==5.3.0
-redis==2.10.5
