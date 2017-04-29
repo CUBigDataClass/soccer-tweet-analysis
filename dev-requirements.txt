@@ -40,7 +40,6 @@ notebook==4.4.1
 oauthlib==2.0.1
 packaging==16.8
 pandocfilters==1.4.1
--e git+git@github.com:CUBigDataClass/Party-Parrots.git@9dc1c91216a7898f9b8a81712c8878ecc79234bb#egg=partyparrots-master
 pathlib2==2.2.1
 pbr==2.0.0
 pexpect==4.2.1
