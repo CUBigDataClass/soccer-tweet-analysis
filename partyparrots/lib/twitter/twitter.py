@@ -57,18 +57,19 @@ class StreamingTwitterData(TwitterBase, tweepy.StreamListener):
     _filters = None
     _stream = None
 
-    def __init__(self, tracks=None, filters=None):
+    def __init__(self, *args, **kwargs):
         # initialize the base class constructor
         super(StreamingTwitterData, self).__init__()
-        self.tracks = tracks
-        self.filters = filters
-
+        self.tracks = kwargs.pop('tracks', None)
+        self.filters = kwargs.pop('filters', None)
+        print 'base class'
         self._stream = tweepy.Stream(auth=self.api.auth, listener=self)
 
     def on_status(self, status):
         # got the status
         # TODO do something with the status
-        print status.text
+        # print status.text
+        pass
 
     def on_error(self, status_code):
         if status_code == 420:
@@ -93,7 +94,7 @@ class StreamingTwitterData(TwitterBase, tweepy.StreamListener):
             self._stream.filter(track=tracks, async=True)
         else:
             # we have previously specified tracks
-            self._stream.filter(track=self._tracks, async=True)
+            self._stream.filter(track=self._tracks, async=True, languages=['en'])
 
 class TimelineTwitterData(TwitterBase):
     """

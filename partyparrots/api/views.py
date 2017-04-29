@@ -3,11 +3,20 @@ from django.http import HttpResponse,JsonResponse
 from django.db import connection
 import json
 from collections import defaultdict
+from pykafka import KafkaClient
 
 from partyparrots.api.methods import get_leagues
 from elasticsearch import Elasticsearch
 
 import redis
+
+KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
+
+TOPIC = KAFKA_CLIENT.topics['realtime']
+
+KAFKA_CONSUMER = TOPIC.get_simple_consumer(
+    consumer_group='partyparrots'
+)
 
 # def get_league_data(request):
 #     leagues_json = get_leagues()
@@ -64,7 +73,7 @@ def get_league_counts(request):
 def get_geotagged_tweets(request):
     r = redis.StrictRedis(host='localhost', port='6379', db=0)
     results = {'data': r.get('geotweets_text_'+'Liverpool')}
-    return JsonResponse(results) 
+    return JsonResponse(results)
 
 def get_search_tweets(request):
     es = Elasticsearch([{'host':'localhost', 'port':9200}])
@@ -76,3 +85,15 @@ def get_search_tweets(request):
     return JsonResponse({
         "results": result['hits']['hits']
     })
+    results = {'data': r.get('geotweets')}
+    return JsonResponse(results)
+
+
+def get_realtime_tweet(request):
+    tweet = KAFKA_CONSUMER.consume()
+    KAFKA_CONSUMER.commit_offsets()
+
+    response = {
+        'tweet': tweet.value
+    }
+    return JsonResponse(response)
