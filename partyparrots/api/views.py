@@ -6,17 +6,19 @@ from collections import defaultdict
 from pykafka import KafkaClient
 
 from partyparrots.api.methods import get_leagues
+from partyparrots.settings import FIXTURES_DIR
 from elasticsearch import Elasticsearch
 
 import redis
+import os
 
-KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
+#KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
 
-TOPIC = KAFKA_CLIENT.topics['realtime']
+#TOPIC = KAFKA_CLIENT.topics['realtime']
 
-KAFKA_CONSUMER = TOPIC.get_simple_consumer(
-    consumer_group='partyparrots'
-)
+#KAFKA_CONSUMER = TOPIC.get_simple_consumer(
+#    consumer_group='partyparrots'
+#)
 
 def get_league_data(request):
     if request.method == 'GET':
@@ -66,3 +68,18 @@ def get_realtime_tweet(request):
         'tweet': tweet.value
     }
     return JsonResponse(response)
+
+def get_club_fixtures(request):
+    clubs = {'Manchester United':'mufc',"Liverpool":'liverpool','Arsenal':'arsenal','Tottenham Hotspur':'spurs',
+            'Manchester City':'mcfc','Chelsea':'chelsea','Real Madrid':'madrid','Atletico Madrid':'atletico',
+            'Bayern Munich':'bayern','Borussia Dortmund':'dortmund','Inter Milan':'inter','AC Milan':'milan',
+            'Juventus':'juventus','AS Roma':'roma','Paris Saint Germain':'psg','Lyon':'lyon','Sevilla':'sevilla',
+            'Barcelona':'barcelona'}
+
+    club = request.GET.get("club")
+    fixtures = os.path.join(FIXTURES_DIR, clubs[club])
+    with open(fixtures, 'rb') as f:
+        res = {
+            "club": json.loads(f.read())
+        }
+        return JsonResponse(res)
