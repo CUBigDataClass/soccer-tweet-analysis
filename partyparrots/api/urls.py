@@ -5,4 +5,5 @@ urlpatterns = [
     url(r'league/', get_league_counts),
     url(r'geotweets/', get_geotagged_tweets),
     url(r'realtime', get_realtime_tweet),
+    url(r'search/',get_search_tweets),
 ]
