@@ -11,8 +11,8 @@ angular.module('PartyParrots')
 }])
 .factory('GeotweetsService',['$http', function($http){
    return {
-       getGeotweets: function() {
-           return $http.get('api/geotweets').then(function(data) { 
+       getGeotweets: function(club) {
+           return $http.get('api/search/?q='+club).then(function(data) { 
                return data.data;
 	   });
        }

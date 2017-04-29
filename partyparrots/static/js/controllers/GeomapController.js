@@ -1,32 +1,40 @@
-angular.module('PartyParrots').controller('GeomapController', ['GeotweetsService', function(GeotweetsService) {
+angular.module('PartyParrots').controller('GeomapController', ['$scope', 'GeotweetsService', function($scope, GeotweetsService) {
     var self = this;
-    var geoPoints = GeotweetsService.getGeotweets();
-
-    this.geoMap = function() {
-        geoPoints.then(function(geoPoints){
-            var points = geoPoints["data"].replace(/'/g,'"');
-            var points = JSON.parse(points);
-            var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                maxZoom:18,
+    $scope.searchField = 'Arsenal';
+  
+    this.mapInitialize = function() {
+        var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+             maxZoom:18,
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
             }),
             latlng = L.latLng(0, 0);
-    
+
             var map = L.map('geo-map', {center: latlng, zoom: 2, layers: [tiles]});
-    
-            var markers = L.markerClusterGroup({chunkedLoading:true});
-    
+            return map;
+    };
+
+    this.markers = L.markerClusterGroup({chunkedLoading:true});
+    this.geoMap = function(map) {
+        var geoPoints = GeotweetsService.getGeotweets($scope.searchField);
+        geoPoints.then(function(geoPoints){
+            var points = geoPoints["results"];
             for (var i = 0; i < points.length; i++) {
-                    var a = points[i]; 
+                    var a = points[i]['_source'];
                     var title = a['text'];
                     var marker = L.marker(new L.LatLng(a['lat'], a['lon']), {title: title});
                     marker.bindPopup(title);
-                    markers.addLayer(marker);
+                    self.markers.addLayer(marker);
             }
     
-            map.addLayer(markers);
+            map.addLayer(self.markers);
         });   
     };
-    
-    this.geoMap();
+  
+    this.map = this.mapInitialize();
+
+    $scope.search =  function() { 
+        self.markers.clearLayers();
+        self.geoMap(self.map);
+    };
+    $scope.search(); 
 }]);

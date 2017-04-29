@@ -18,7 +18,6 @@ angular.module('PartyParrots').controller('TreemapController', ['TreemapService'
                 }
             }
         mapData.addRows(arrData);
-        console.log(arrData[0]);
         var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
 
         var options = {
@@ -41,7 +40,6 @@ angular.module('PartyParrots').controller('TreemapController', ['TreemapService'
         useWeightedAverageForAggregation: true,
         generateTooltip: showStaticTooltip
       };
-        console.log(mapData);
         tree.draw(mapData, options);
 
         function showStaticTooltip(row, size, value) {
