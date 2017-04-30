@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.css">
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.Default.css">
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet" />
  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
         <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.4/dist/leaflet.markercluster.js"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -29,6 +30,15 @@
 
     </head>
     <body ng-controller="IndexController as ctrl">
+
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<p class="pp-brand">The Beautiful Game</p>
+				</div>
+			</div>
+		</nav>
+
         {% block main %}
         {% endblock %}
         <script type="text/javascript" src="/static/js/bower.min.js"></script>
@@ -38,6 +48,7 @@
         <script type="text/javascript" src="/static/js/controllers/TreemapController.js"></script>
         <script type="text/javascript" src="/static/js/controllers/GeomapController.js"></script>
         <script type="text/javascript" src="/static/js/service/TickerService.js"></script>
+		<script type="text/javascript" src="/static/js/service/StateService.js"></script>
         <script type="text/javascript" src="/static/js/controllers/TickerController.js"></script>
        <script type="text/javascript" src="/static/js/service/TimeSeriesService.js"></script>
 	 <script type="text/javascript" src="/static/js/controllers/TimeSeriesController.js"></script>

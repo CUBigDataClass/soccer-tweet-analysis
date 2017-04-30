@@ -1,7 +1,19 @@
-angular.module('PartyParrots').controller('TreemapController', ['TreemapService', function(TreemapService) {
+angular.module('PartyParrots').controller('TreemapController', ['TreemapService', '$scope', 'StateService', function(TreemapService, $scope, StateService) {
     var self = this;
     var data = TreemapService.getLeagueCounts();
-    
+
+    self.isShown = false;
+
+    $scope.$watch(function() {
+        return StateService.getState();
+    }, function(newVal, oldVal) {
+        if(newVal == 'treemap') {
+            self.isShown = true;
+        } else {
+            self.isShown = false;
+        }
+    });
+
     this.treeMap = function() {
         var mapData = new google.visualization.DataTable();
         mapData.addColumn('string', 'ID');
@@ -9,7 +21,7 @@ angular.module('PartyParrots').controller('TreemapController', ['TreemapService'
         mapData.addColumn('number', 'Count');
 
         var arrData = [];
-        data.then(function(data) { 
+        data.then(function(data) {
             arrData.push(['Leagues', null, 0]);
             for(var league in data) {
                 arrData.push([league,'Leagues', null]);
@@ -34,8 +46,8 @@ angular.module('PartyParrots').controller('TreemapController', ['TreemapService'
         headerColor: '#ee8100',
         showScale: true,
         height: 500,
-        fontSize: 14, 
-        fontFamily: 'Roboto Condensed', 
+        fontSize: 14,
+        fontFamily: 'Roboto Condensed',
         textStyle: {bold:true},
         useWeightedAverageForAggregation: true,
         generateTooltip: showStaticTooltip
@@ -47,7 +59,7 @@ angular.module('PartyParrots').controller('TreemapController', ['TreemapService'
         }
         });
     };
-    
+
     google.charts.load('current', {'packages':['treemap']});
     google.charts.setOnLoadCallback(this.treeMap);
 }]);

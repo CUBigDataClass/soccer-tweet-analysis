@@ -40,3 +40,14 @@
 #chart-div {
     border: 1px solid #ccc;
 }
+
+.pp-brand {
+	font-family: 'Fira Sans', sans-serif;
+	font-size: 25px;
+	color: white;
+}
+
+.sidebar {
+	height: 100vh;
+	border-right: 1px solid black;
+}

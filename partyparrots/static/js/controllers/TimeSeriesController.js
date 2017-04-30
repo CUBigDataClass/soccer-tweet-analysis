@@ -1,5 +1,5 @@
 angular.module('PartyParrots')
-.controller('TimeSeriesController', ['TimeSeriesService', '$scope', function(TimeSeriesService, $scope) {
+.controller('TimeSeriesController', ['TimeSeriesService', '$scope', 'StateService',function(TimeSeriesService, $scope, StateService) {
 
     var self = this;
 
@@ -21,6 +21,18 @@ angular.module('PartyParrots')
 		{club: 'Juventus'},
 		{club: 'Paris Saint Germain'}
     ];
+
+    self.isShown = true;
+
+    $scope.$watch(function() {
+        return StateService.getState();
+    }, function(newVal, oldVal) {
+        if(newVal == 'timeseries') {
+            self.isShown = true;
+        } else {
+            self.isShown = false;
+        }
+    });
 
     self.selectedClub = "Liverpool";
 

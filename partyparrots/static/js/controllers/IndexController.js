@@ -1,5 +1,5 @@
 angular.module('PartyParrots')
-.controller('IndexController', ['BackendService', function(BackendService) {
+.controller('IndexController', ['BackendService', 'StateService', function(BackendService, StateService) {
     var self = this;
 
     self.createTreeMap = function(data) {
@@ -69,9 +69,29 @@ angular.module('PartyParrots')
         });
     };
 
+    self.showGeomap = function() {
+        StateService.setState('geomap');
+    };
+
+    self.showTreemap = function() {
+        StateService.setState('treemap');
+    };
+
+    self.showTimeSeries = function() {
+        StateService.setState('timeseries');
+    };
+
     self.initialize = function() {
         BackendService.getLeagueCounts(self.createTreeMap);
     }
+
+    self.state = "timeseries";
+
+    $scope.$watch(function() {
+        return StateService.getState();
+    }, function(oldVal, newVal) {
+        self.state = newVal;
+    });
 
     self.initialize();
 
