@@ -12,7 +12,10 @@ angular.module('PartyParrots')
 .factory('GeotweetsService',['$http', function($http){
    return {
        getGeotweets: function(club) {
-           return $http.get('api/search/?q='+club).then(function(data) { 
+	       var club_list = club.split(" ");
+		   console.log(club_list);
+		   var club_search = club_list.join("");
+           return $http.get('api/search/?q='+club_search).then(function(data) { 
                return data.data;
 	   });
        }

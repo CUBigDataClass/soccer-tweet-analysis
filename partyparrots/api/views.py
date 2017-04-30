@@ -61,7 +61,7 @@ def get_daily_tweet_count(request):
 
 def get_search_tweets(request):
     es = Elasticsearch([{'host':'localhost', 'port':9200}])
-    es.indices.put_settings(index="geo_tweets", body= {"index" : { "max_result_window" : 70000 }})
+    es.indices.put_settings(index="geo_tweets_comb", body= {"index" : { "max_result_window" : 70000 }})
 
     query = request.GET.get("q")
     result = es.search(q=query,size=70000)
