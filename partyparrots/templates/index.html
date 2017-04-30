@@ -19,4 +19,17 @@
     </ul>
 </div>
 
+<div ng-controller="TimeSeriesController as ctrl">
+
+
+    <select ng-model="ctrl.selectedClub" ng-options="club.club as club.club for club in ctrl.clubs">
+   </select> 
+
+    <div id="game-dates-composed"><span class="display-games" <style position=absolute left=100px top=150px></style></span></div>
+    <div id="scrubber-chart"></div>
+    <div id="game-table"></div>
+    <div id ="selectclub1"></div>
+    <div id ="selectclub2"></div>
+</div>
+
 {% endblock %}
