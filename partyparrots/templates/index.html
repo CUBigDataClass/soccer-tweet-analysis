@@ -8,6 +8,22 @@
     </div>
 </div>
 <div id="geomap-container" ng-controller="GeomapController as ctrl">
+   <div class="container" id="search-container">
+	<div class="row">
+        <div class="col-md-offset-9 col-md-4">
+            <div id="search-input">
+                <div class="input-group col-md-8">
+                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchField"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-sm" type="button" ng-click="search(searchField)">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+    </div>
     <div id="geo-map"></div>
 </div>
 
