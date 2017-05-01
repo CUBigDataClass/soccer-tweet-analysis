@@ -57,7 +57,8 @@ angular.module('PartyParrots')
     self.gotDailyCounts = function(data) {
 	var res = data.data.data.replace(/'/g, '"');
         self._dailyCounts = JSON.parse(res);
-
+		
+		self.GLOBAL_J = 0;
 
 		//time formats
 		var countsDateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
@@ -73,7 +74,6 @@ angular.module('PartyParrots')
 			});
 		var countsGroup = dateDim.group().reduceSum(dc.pluck('count'));
 
-		//games data
 		var ndxGames = crossfilter(self._fixtures)
  	    var gameDateDim = ndxGames.dimension(function(d){d.date = gameDateFormat.parse(d.date); d.count = 0; return d.date;})
 
