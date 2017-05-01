@@ -57,7 +57,7 @@ angular.module('PartyParrots')
     self.gotDailyCounts = function(data) {
 	var res = data.data.data.replace(/'/g, '"');
         self._dailyCounts = JSON.parse(res);
-		
+
 		self.GLOBAL_J = 0;
 
 		//time formats
@@ -120,7 +120,7 @@ angular.module('PartyParrots')
 		//compose counts group for games to link up
 		var ndxg= crossfilter(self.GAME_DATES)
 		var gameDateDim = ndxg.dimension(function(d){ return [d.date, +d.count, d.club1, d.club2, d.club1score, d.club2score]})
-		var filteredCounts = gameDateDim.filterFunction(function(d){console.log(d); return d != undefined})
+		var filteredCounts = gameDateDim.filterFunction(function(d){ return d != undefined})
 		var gameCountGroup = filteredCounts.group().reduceSum(function(d){ if (d != undefined) {return d.count} else return 0}); //something fucked happening
 
 		//begin setting up charts
@@ -151,8 +151,8 @@ angular.module('PartyParrots')
 	             .dimension(gameDateDim)
 	             .colors('red')
 	             .group(gameCountGroup)
-		  .keyAccessor(function(d){ console.log(d.key[0]); return d.key[0]})
-		  .valueAccessor(function(d){ return d.value})
+		  .keyAccessor(function(d){ return d.key[0]})
+		  .valueAccessor(function(d){ return d.key[1]})
 
 		//   .on('renderlet', function(chart) {
 		//           	chart.selectAll('circle.dot')
@@ -179,47 +179,6 @@ angular.module('PartyParrots')
 	         .alwaysUseRounding(true)
 
 	 	scrubberChart.yAxis().ticks(0);
-
-		var club1dim = ndxg.dimension(function(d){if (d.club1 != self.TEAM) {d.club2 = d.club1; d.club1 = self.TEAM} ; return d.club1})
-		var club2dim = ndxg.dimension(function(d){return d.club2})
-		var club1score = ndxg.dimension(function(d){return d.club1score})
-		var club2score = ndxg.dimension(function(d){return d.club2score})
-
-
-		 var //select1 = dc.selectMenu('#selectleague'),
-		      select2 = dc.selectMenu('#selectclub1'),
-		      select3 = dc.selectMenu('#selectclub2');
-		     // datatable = dc.dataTable('#datatable');
-
-
-			  select2
-	      .dimension(club1dim)
-	      .group(club1dim.group())
-	      .controlsUseVisibility(true);
-	    select3
-	      .dimension(club2dim)
-	      .group(club2dim.group())
-	      .multiple(true)
-	      .numberVisible(10)
-	      .controlsUseVisibility(true);
-
-
-		var table = dc.dataTable("#game-table");
-		table
-		    .width(768)
-		    .height(480)
-		    .dimension(gameDateDim)
-		    .group(function(d){console.log(d); return d})
-		    .columns([function (d) { return gameDateFormat(d.date)},
-				function (d) { console.log(d);return d.club1},
-					function (d) { return d.club1score},
-					function (d) { return d.club2},
-					function (d) { return d.club2score}
-					])
-		    .sortBy(function (d) { return d.date })
-
-
-
 
 	dc.renderAll()
 
