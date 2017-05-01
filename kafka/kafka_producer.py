@@ -29,7 +29,7 @@ hashtags = [
 class TwitterKafkaProducer(StreamingTwitterData):
 
     def __init__(self, *args, **kwargs):
-        self.client = KafkaClient(hosts='localhost:9092')
+        self.client = KafkaClient(hosts='52.14.146.157:9092')
         self.topic = self.client.topics['realtime']
         self.producer = self.topic.get_producer()
 

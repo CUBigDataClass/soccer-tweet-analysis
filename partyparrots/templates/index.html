@@ -34,37 +34,50 @@
 	<h4>A map of all the geotagged tweets between January 2016 - April 2017 containing hashtags of popular soccer teams</h4><p>Search powered by Elasticsearch</p>
 </div>
 
+<div ng-controller="TimeSeriesController as ctrl"><a id="timeseries">
+    <div id="timeseries-container" class="container">
+	  <div class="row" style="margin-left:15px; padding-bottom: 30px;">
+    	<select id="ts-dropdown" ng-model="ctrl.selectedClub" ng-options="club.club as club.club for club in ctrl.clubs">
+        </select>
+	  </div>
+      <div id="game-dates-composed" style="padding-left:80px;"><span class="display-games"></span></div>
+      <div id="scrubber-chart" style="padding-left:80px"></div></a>
+    </div>
+	<div id="ts-text"><h4>Timeseries Visualization of tweets between January 2016 - April 2017 containing hashtags of popular soccer teams</h4><p>Orange dots indicate the actual game dates of soccer matches</p></div>
+</div>
+
+
+
 <div id="ticker-container" ng-controller="TickerController as ctrl">
   <div class="panel panel-default">
-    <div class="panel-heading" id="ticker-header">
-      <div id="twitter-logo"><i class="fa fa-twitter fa-2x" style="color:#00aced"></i></div>
-	  <h4><p class="label label-primary">Live Tweets!</p></h4>
+    <div class="panel-heading" id="ticker-header" style="background-color:#00ACED">
+      <h4><p class="" style="color:#fff; font-family:Roboto Condensed">#LiveTweets</p></h4>
     </div>
-  <div class="panel-body">
+  <div class="panel-body" style="overflow-y: scroll; max-height: 200px;">
         <ul ticker>
           <li ng-repeat="item in ctrl.tickerItems" class="item-{[{$index}]}">
             {[{ item.tweet }]}
           </li>
         </ul>
-		</div>
+        </div>
 </div>
 </div>
 
+<!--<div class="container" id="footer">
+    <i class="fa fa-github fa-4" aria-hidden="true"></i>
+<a href="https://github.com/CUBigDataClass/Party-Parrots" class="icon-block">
+    <span>Github</span>
+</a>  
+</div>
+-->
 
-<div ng-controller="TimeSeriesController as ctrl"><a id="timeseries">
-    <div id="timeseries-container" class="container">
-	  <div class="row" style="margin-left:30px; padding-bottom: 30px;">
-    	<select id="ts-dropdown" ng-model="ctrl.selectedClub" ng-options="club.club as club.club for club in ctrl.clubs">
-        </select>
-	  </div>
-      <div id="game-dates-composed"><span class="display-games"></span></div>
-      <div id="scrubber-chart"></div>
-    </div> 
-	<div id="timeseries-container-2">
-    <div id="game-table"></div>
-    <div id ="selectclub1"></div>
-    <div id ="selectclub2"></div></a>
+<footer class="bs-docs-footer">
+	<div class="container">
+		<a href="https://github.com/CUBigDataClass/Party-Parrots" style="font-size: 1.5em;"><img src="/static/github.png" style="height: 20px; margin-right: 5px; margin-top: -4px;"/>GitHub</a><br />
+		<a href="https://www.pivotaltracker.com/n/projects/1972673" style="font-size: 1.5em;"><img src="/static/pivotal.png" style="height: 20px; margin-right: 5px; margin-top: -4px;" />Pivotal</a>
+		<br /><br />
+		<p>&copy; CU Big Data project - Aliisa Roe, Monal Narasimhamurthy, Sachin Muralidhara, Saurabh Sood</p>
+
 	</div>
-</div>
-
+</footer>
 {% endblock %}

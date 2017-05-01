@@ -59,6 +59,7 @@ angular.module('PartyParrots')
         self._dailyCounts = JSON.parse(res);
 		
 		self.GLOBAL_J = 0;
+		self.GAME_DATES = [];
 
 		//time formats
 		var countsDateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
@@ -149,10 +150,10 @@ angular.module('PartyParrots')
 				 ,
 	         dc.scatterPlot(composite)
 	             .dimension(gameDateDim)
-	             .colors('red')
+	             .colors('orange')
 	             .group(gameCountGroup)
 		  .keyAccessor(function(d){ console.log(d.key[0]); return d.key[0]})
-		  .valueAccessor(function(d){ return d.value})
+		  .valueAccessor(function(d){ return d.key[1]})
 
 		//   .on('renderlet', function(chart) {
 		//           	chart.selectAll('circle.dot')

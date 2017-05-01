@@ -84,10 +84,11 @@ body{
 	width: 60%;
 	color: #00aced;
 	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 #ticker-header {
-    background-color: #B5D0D0;
+    background-color: #ccc;
 }
 
 #twitter-logo {
@@ -98,9 +99,20 @@ body{
 
 #timeseries-container {
     padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 #ts-dropdown {
     padding: 10px;
 	color: #000;
+}
+
+#footer {
+    width: 100%;
+	height: 80px;
+	background-color: #ccc;
+}
+
+#ts-text {
+    text-align:center;
 }

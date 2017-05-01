@@ -3,7 +3,7 @@ from django.http import HttpResponse,JsonResponse
 from django.db import connection
 import json
 from collections import defaultdict
-# from pykafka import KafkaClient
+from pykafka import KafkaClient
 
 from partyparrots.api.methods import get_leagues
 from partyparrots.settings import FIXTURES_DIR
@@ -12,13 +12,13 @@ from elasticsearch import Elasticsearch
 import redis
 import os
 
-# KAFKA_CLIENT = KafkaClient(hosts="127.0.0.1:9092")
-#
-# TOPIC = KAFKA_CLIENT.topics['realtime']
-#
-# KAFKA_CONSUMER = TOPIC.get_simple_consumer(
-#    consumer_group='partyparrots'
-# )
+KAFKA_CLIENT = KafkaClient(hosts="52.14.146.157:9092")
+
+TOPIC = KAFKA_CLIENT.topics['realtime']
+
+KAFKA_CONSUMER = TOPIC.get_simple_consumer(
+    consumer_group='partyparrots'
+)
 
 def get_league_data(request):
     if request.method == 'GET':
