@@ -8,7 +8,8 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.css">
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.Default.css">
- 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+     	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
         <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.4/dist/leaflet.markercluster.js"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <title>The Beautiful Game</title>
@@ -29,6 +30,51 @@
 
     </head>
     <body ng-controller="IndexController as ctrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-light" style="background-color: #EE8100;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	<div id="logo-bar">
+	<img class="img-circle" src="static/img/lfc.png">
+	<img class="img-circle" src="static/img/af.png">
+	<img class="img-circle" src="static/img/am.png">
+	<img class="img-circle" src="static/img/ar.png">
+	<img class="img-circle" src="static/img/bd.png">
+	<img class="img-circle" src="static/img/cf.png">
+	<img class="img-circle" src="static/img/fb.png">
+    <img class="img-circle" src="static/img/fim.png">
+	<img class="img-circle" src="static/img/gb.png">
+	<img class="img-circle" src="static/img/isa.png">  
+	<img class="img-circle" src="static/img/jf.png"> 
+	<img class="img-circle" src="static/img/mcf.png">  
+	<img class="img-circle" src="static/img/muf.png"> 
+	<img class="img-circle" src="static/img/ol.png">
+	<img class="img-circle" src="static/img/psgf.png">  
+	<img class="img-circle" src="static/img/rm.png">
+	<img class="img-circle" src="static/img/sf.png"> 
+	<img class="img-circle" src="static/img/sll.png"> 
+	<img class="img-circle" src="static/img/thf.png">
+	</div>
+	<div id = "jumbo-container">
+	<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">The Beautiful Game</h1>
+    <p class="lead">Soccer tweet analysis</p>
+  </div>
+</div>
+	</div>
         {% block main %}
         {% endblock %}
         <script type="text/javascript" src="/static/js/bower.min.js"></script>

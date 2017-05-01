@@ -2,20 +2,26 @@
 
 {% block main %}
 
-<div id="container" ng-controller="TreemapController as ctrl">
-    <div id="treemap-container">
-        <div id="chart_div"></div>
-    </div>
+<div id="link-container">
+   <a href="#treemap"><button type="button" class="btn btn-primary btn-lg">Treemap Visualization</button></a>
+   <a href="#geomap"><button type="button" class="btn btn-primary btn-lg">Geomap Visualization</button></a>
+   <a href="#timeseries"><button type="button" class="btn btn-primary btn-lg">Timeseries Visualization</button></a>
 </div>
-<div id="geomap-container" ng-controller="GeomapController as ctrl">
+<div id="container" ng-controller="TreemapController as ctrl">
+    <div id="treemap-container"><a id="treemap">
+        <div id="chart_div"></div>
+    </a><h4>A visual representation of the total number of tweets between January 2016 - April 2017 for popular soccer teams</h4><p>Click on the nodes of the data treemap to drill down. Right-click to move one level up. </p>
+	</div>
+</div>
+<div id="geomap-container" ng-controller="GeomapController as ctrl"><a id="geomap">
    <div class="container" id="search-container">
 	<div class="row">
-        <div class="col-md-offset-9 col-md-4">
+        <div class="col-md-offset-3 col-md-6">
             <div id="search-input">
-                <div class="input-group col-md-8">
-                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchField"/>
+                <div class="input-group">
+                    <input type="text" class="form-control input-md" placeholder="Search" ng-model="searchField"/>
                     <span class="input-group-btn">
-                        <button class="btn btn-info btn-sm" type="button" ng-click="search(searchField)">
+                        <button class="btn btn-primary btn-md" type="button" ng-click="search(searchField)">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
@@ -24,28 +30,41 @@
         </div>
 	</div>
     </div>
-    <div id="geo-map"></div>
+    <div id="geo-map"></div></a>
+	<h4>A map of all the geotagged tweets between January 2016 - April 2017 containing hashtags of popular soccer teams</h4><p>Search powered by Elasticsearch</p>
 </div>
 
-<div ng-controller="TickerController as ctrl">
-    <ul ticker>
-      <li ng-repeat="item in ctrl.tickerItems" class="item-{[{$index}]}">
-        {[{ item.tweet }]}
-      </li>
-    </ul>
+<div id="ticker-container" ng-controller="TickerController as ctrl">
+  <div class="panel panel-default">
+    <div class="panel-heading" id="ticker-header">
+      <div id="twitter-logo"><i class="fa fa-twitter fa-2x" style="color:#00aced"></i></div>
+	  <h4><p class="label label-primary">Live Tweets!</p></h4>
+    </div>
+  <div class="panel-body">
+        <ul ticker>
+          <li ng-repeat="item in ctrl.tickerItems" class="item-{[{$index}]}">
+            {[{ item.tweet }]}
+          </li>
+        </ul>
+		</div>
+</div>
 </div>
 
-<div ng-controller="TimeSeriesController as ctrl">
 
-
-    <select ng-model="ctrl.selectedClub" ng-options="club.club as club.club for club in ctrl.clubs">
-   </select> 
-
-    <div id="game-dates-composed"><span class="display-games" <style position=absolute left=100px top=150px></style></span></div>
-    <div id="scrubber-chart"></div>
+<div ng-controller="TimeSeriesController as ctrl"><a id="timeseries">
+    <div id="timeseries-container" class="container">
+	  <div class="row" style="margin-left:30px; padding-bottom: 30px;">
+    	<select id="ts-dropdown" ng-model="ctrl.selectedClub" ng-options="club.club as club.club for club in ctrl.clubs">
+        </select>
+	  </div>
+      <div id="game-dates-composed"><span class="display-games"></span></div>
+      <div id="scrubber-chart"></div>
+    </div> 
+	<div id="timeseries-container-2">
     <div id="game-table"></div>
     <div id ="selectclub1"></div>
-    <div id ="selectclub2"></div>
+    <div id ="selectclub2"></div></a>
+	</div>
 </div>
 
 {% endblock %}
