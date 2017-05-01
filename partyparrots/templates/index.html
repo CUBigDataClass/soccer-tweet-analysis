@@ -21,7 +21,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control input-md" placeholder="Search" ng-model="searchField"/>
                     <span class="input-group-btn">
-                        <button class="btn btn-info btn-md" type="button" ng-click="search(searchField)">
+                        <button class="btn btn-primary btn-md" type="button" ng-click="search(searchField)">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
@@ -37,8 +37,8 @@
 <div id="ticker-container" ng-controller="TickerController as ctrl">
   <div class="panel panel-default">
     <div class="panel-heading" id="ticker-header">
-      <div><i class="fa fa-twitter fa-2x" style="color:#00aced"></i></div>
-	  <h4><p class="label label-info">Live Tweets!</p></h4>
+      <div id="twitter-logo"><i class="fa fa-twitter fa-2x" style="color:#00aced"></i></div>
+	  <h4><p class="label label-primary">Live Tweets!</p></h4>
     </div>
   <div class="panel-body">
         <ul ticker>
@@ -52,11 +52,14 @@
 
 
 <div ng-controller="TimeSeriesController as ctrl"><a id="timeseries">
-    <div id="timeseries-container">
-    <select ng-model="ctrl.selectedClub" ng-options="club.club as club.club for club in ctrl.clubs">
-    </select></div> 
-    <div id="game-dates-composed"><span class="display-games"></span></div>
-    <div id="scrubber-chart"></div>
+    <div id="timeseries-container" class="container">
+	  <div class="row" style="margin-left:30px; padding-bottom: 30px;">
+    	<select id="ts-dropdown" ng-model="ctrl.selectedClub" ng-options="club.club as club.club for club in ctrl.clubs">
+        </select>
+	  </div>
+      <div id="game-dates-composed"><span class="display-games"></span></div>
+      <div id="scrubber-chart"></div>
+    </div> 
 	<div id="timeseries-container-2">
     <div id="game-table"></div>
     <div id ="selectclub1"></div>
