@@ -1,5 +1,37 @@
+body{
+    font-family: 'PT Sans', sans-serif;
+	padding-top: 80px;
+}
+
+.img-circle {
+    border-radius: 0px;
+	width: 70px;
+	height: 80px;
+}
+
+#logo-bar {
+    margin: auto;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#jumbo-container {
+    width: 60%;
+	text-align: center;
+	margin: auto;
+	padding-top: 40px;
+}
+
+#link-container {
+    margin: auto;
+	text-align: center;
+	margin: auto;
+	padding-top: 40px;
+}
+
 #geomap-container {
-    padding-top: 50px;
+    padding-top: 100px;
+	text-align: center;
 }
 
 #geo-map { 
@@ -7,6 +39,10 @@
     height: 600px; 
     border: 1px solid #ccc;
     margin: auto;
+}
+
+#search-input {
+    padding-bottom: 20px;    
 }
 
 #progress {
@@ -35,8 +71,18 @@
 #treemap-container {
     width: 60%;
     margin: auto;
+	padding-top: 50px;
+	text-align: center;
 }
 
 #chart-div {
     border: 1px solid #ccc;
 }
+
+#ticker-container {
+    margin: auto;
+	width: 60%;
+	color: #00aced;
+	padding-top: 50px;
+}
+
