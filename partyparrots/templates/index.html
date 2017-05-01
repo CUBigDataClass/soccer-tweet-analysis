@@ -53,7 +53,7 @@
     <div class="panel-heading" id="ticker-header" style="background-color:#00ACED">
       <h4><p class="" style="color:#fff; font-family:Roboto Condensed">#LiveTweets</p></h4>
     </div>
-  <div class="panel-body" style="overflow-y: scroll; max-height: 200px;">
+  <div class="panel-body" style="overflow-y: scroll; max-height: 200px; min-height: 200px;">
         <ul ticker>
           <li ng-repeat="item in ctrl.tickerItems" class="item-{[{$index}]}">
             {[{ item.tweet }]}
